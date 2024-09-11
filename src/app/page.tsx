@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
-import { Loader2, ImageIcon, DownloadIcon } from "lucide-react"
+import { Loader2, DownloadIcon } from "lucide-react"
 
 export default function Component() {
   const [prompt, setPrompt] = useState('')
