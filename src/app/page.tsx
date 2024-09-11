@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
-import { Loader2, Image as ImageIcon } from "lucide-react"
+import { Loader2, ImageIcon, DownloadIcon } from "lucide-react"
 
 export default function Component() {
   const [prompt, setPrompt] = useState('')
@@ -41,6 +41,17 @@ export default function Component() {
       setError('Failed to generate image: ' + err.message)
     } finally {
       setIsLoading(false)
+    }
+  }
+
+  const handleDownload = () => {
+    if (generatedImage) {
+      const link = document.createElement('a')
+      link.href = generatedImage
+      link.download = `ai-generated-image-${Date.now()}.png`
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
     }
   }
 
@@ -83,12 +94,18 @@ export default function Component() {
         <Card className="mb-8">
           <CardContent className="p-6">
             <h2 className="text-2xl font-semibold mb-4">Generated Image</h2>
-            <div className="aspect-square relative">
+            <div className="aspect-square relative mb-4">
               <img
                 src={generatedImage}
                 alt="AI Generated"
                 className="rounded-lg object-cover w-full h-full"
               />
+            </div>
+            <div className="flex justify-end">
+              <Button onClick={handleDownload} className="px-6 py-3 text-lg">
+                <DownloadIcon className="mr-2 h-5 w-5" />
+                Download Image
+              </Button>
             </div>
           </CardContent>
         </Card>
