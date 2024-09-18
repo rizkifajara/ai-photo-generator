@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
-import { Loader2, DownloadIcon } from "lucide-react"
+import { Loader2, ImageIcon, DownloadIcon } from "lucide-react"
 
 export default function Component() {
   const [prompt, setPrompt] = useState('')
@@ -56,25 +56,29 @@ export default function Component() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold text-center mb-2">AI Photo Generator</h1>
-      <p className="text-center text-gray-600 mb-8">Transform your ideas into stunning images with AI</p>
+    <div className="container mx-auto px-4 py-8 bg-bg min-h-screen">
+      <h1 className="text-6xl font-heading text-center mb-2 text-text transform -rotate-2">AI Photo Generator</h1>
+      <p className="text-center text-2xl mb-8 text-text transform rotate-1">Transform your ideas into stunning images with AI</p>
 
-      <div className="max-w-md mx-auto">
-        <Card className="mb-8">
-          <CardContent className="p-6">
+      <div className="max-w-2xl mx-auto">
+        <Card className="mb-8 border-4 border-border shadow-light">
+          <CardContent className="p-6 bg-main">
             <form onSubmit={handleSubmit} className="space-y-4">
               <Input
                 type="text"
                 placeholder="Describe the image you want to generate..."
                 value={prompt}
                 onChange={(e) => setPrompt(e.target.value)}
-                className="w-full"
+                className="w-full border-4 border-border text-xl p-4 bg-bg placeholder-secondaryBlack rounded-base"
               />
-              <Button type="submit" className="w-full" disabled={isLoading || !prompt.trim()}>
+              <Button 
+                type="submit" 
+                className="w-full bg-mainAccent hover:bg-main text-text font-heading py-4 px-6 text-xl border-4 border-border rounded-base transform transition-transform duration-200 hover:-translate-y-1 hover:shadow-light"
+                disabled={isLoading || !prompt.trim()}
+              >
                 {isLoading ? (
                   <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    <Loader2 className="mr-2 h-6 w-6 animate-spin" />
                     Generating...
                   </>
                 ) : (
@@ -87,23 +91,26 @@ export default function Component() {
       </div>
 
       {error && (
-        <div className="text-red-500 text-center mb-4">{error}</div>
+        <div className="text-red-600 text-center mb-4 text-xl font-heading">{error}</div>
       )}
 
       {generatedImage && (
-        <Card className="mb-8">
-          <CardContent className="p-6">
-            <h2 className="text-2xl font-semibold mb-4">Generated Image</h2>
-            <div className="aspect-square relative mb-4">
+        <Card className="mb-8 border-4 border-border shadow-light">
+          <CardContent className="p-6 bg-main">
+            <h2 className="text-3xl font-heading mb-4 text-text transform -rotate-1">Generated Image</h2>
+            <div className="aspect-square relative mb-4 border-4 border-border">
               <img
                 src={generatedImage}
                 alt="AI Generated"
-                className="rounded-lg object-cover w-full h-full"
+                className="object-cover w-full h-full"
               />
             </div>
             <div className="flex justify-end">
-              <Button onClick={handleDownload} className="px-6 py-3 text-lg">
-                <DownloadIcon className="mr-2 h-5 w-5" />
+              <Button 
+                onClick={handleDownload} 
+                className="px-6 py-3 text-xl bg-mainAccent hover:bg-main text-text font-heading border-4 border-border rounded-base transform transition-transform duration-200 hover:-translate-y-1 hover:shadow-light"
+              >
+                <DownloadIcon className="mr-2 h-6 w-6" />
                 Download Image
               </Button>
             </div>
@@ -112,15 +119,15 @@ export default function Component() {
       )}
 
       {previousImages.length > 0 && (
-        <div>
-          <h2 className="text-2xl font-semibold mb-4">Previous Generations</h2>
+        <div className="border-4 border-border p-6 bg-main shadow-light rounded-base">
+          <h2 className="text-3xl font-heading mb-4 text-text transform rotate-1">Previous Generations</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {previousImages.map((img, index) => (
-              <div key={index} className="aspect-square relative">
+              <div key={index} className="aspect-square relative border-4 border-border">
                 <img
                   src={img}
                   alt={`Previous generation ${index + 1}`}
-                  className="rounded-lg object-cover w-full h-full"
+                  className="object-cover w-full h-full"
                 />
               </div>
             ))}

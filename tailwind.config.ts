@@ -40,7 +40,6 @@ const config: Config = {
   				DEFAULT: 'hsl(var(--destructive))',
   				foreground: 'hsl(var(--destructive-foreground))'
   			},
-  			border: 'hsl(var(--border))',
   			input: 'hsl(var(--input))',
   			ring: 'hsl(var(--ring))',
   			chart: {
@@ -49,12 +48,33 @@ const config: Config = {
   				'3': 'hsl(var(--chart-3))',
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
-  			}
+  			},
+			// Neobrutalism colors
+			main: 'hsl(var(--main))',
+			mainAccent: 'hsl(var(--main-accent))',
+			bg: 'hsl(var(--bg))',
+			text: 'hsl(var(--text))',
+			border: 'hsl(var(--border))',
   		},
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
-  			sm: 'calc(var(--radius) - 4px)'
+  			sm: 'calc(var(--radius) - 4px)',
+  			base: '5px'
+  		},
+  		boxShadow: {
+  			light: '4px 4px 0px 0px #000',
+  			dark: '4px 4px 0px 0px #000'
+  		},
+  		translate: {
+  			boxShadowX: '4px',
+  			boxShadowY: '4px',
+  			reverseBoxShadowX: '-4px',
+  			reverseBoxShadowY: '-4px'
+  		},
+  		fontWeight: {
+  			base: '500',
+  			heading: '700'
   		}
   	}
   },
